@@ -16,7 +16,7 @@ exports[`matches the snapshot 1`] = `
     className="increment"
     onClick={[Function]}
   >
-    Increment count2
+    Increment count
   </button>
 </div>
 `;
