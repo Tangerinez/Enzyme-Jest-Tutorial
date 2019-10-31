@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { shallow } from "enzyme";
-import App from "./App";
+import renderer from "react-test-renderer";
+import App from "../App";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
@@ -45,4 +46,9 @@ describe("App component", () => {
     const text = wrapper.find("p").text();
     expect(text).toEqual("Count: -1");
   });
+});
+
+it("matches the snapshot", () => {
+  const tree = renderer.create(<App />).toJSON();
+  expect(tree).toMatchSnapshot();
 });
