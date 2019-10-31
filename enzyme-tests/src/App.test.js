@@ -36,3 +36,13 @@ describe("App Component", () => {
     expect(text).toEqual("Count: 1");
   });
 });
+
+describe("App component", () => {
+  it("decrements count by 1 when the decrement button is clicked", () => {
+    const wrapper = shallow(<App />);
+    const decrementBtn = wrapper.find("button.decrement");
+    decrementBtn.simulate("click");
+    const text = wrapper.find("p").text();
+    expect(text).toEqual("Count: -1");
+  });
+});

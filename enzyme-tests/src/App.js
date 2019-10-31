@@ -8,16 +8,24 @@ class App extends Component {
     };
   }
 
-  makeIncrementer = amount => () =>
-    this.setState(prevState => ({
-      count: prevState.count + amount
-    }));
+  increment = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
+  };
 
-  increment = this.makeIncrementer(1);
+  decrement = () => {
+    this.setState({
+      count: this.state.count - 1
+    });
+  };
 
   render() {
     return (
       <div>
+        <button className="decrement" onClick={this.decrement}>
+          Increment count
+        </button>
         <p>Count: {this.state.count}</p>
         <button className="increment" onClick={this.increment}>
           Increment count
