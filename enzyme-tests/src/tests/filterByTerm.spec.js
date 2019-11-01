@@ -1,9 +1,4 @@
-function filterByTerm(inputArr, searchTerm) {
-  const regex = new RegExp(searchTerm, "i");
-  return inputArr.filter(function(arrayElement) {
-    return arrayElement.url.match(regex);
-  });
-}
+import { filterByTerm } from "../components/filterByTerm/filterByTerm";
 
 describe("Filter function", () => {
   // Every time you start writing a new suite of tests for a functionality wrap it in a describe block.
