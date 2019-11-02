@@ -1,23 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Button extends React.Component {
-  state = {
-    text: ""
-  };
+function Button(props) {
+  const [text, setText] = useState("");
 
-  handleClick = () => {
-    this.setState(() => {
-      return { text: "PROCEED TO CHECKOUT" };
-    });
-  };
-
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.text || this.props.text}
-      </button>
-    );
+  function handleClick() {
+    setText("PROCEED TO CHECKOUT");
   }
+
+  return <button onClick={handleClick}>{text || props.text}</button>;
 }
 
 export default Button;
