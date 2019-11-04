@@ -9,11 +9,13 @@ beforeEach(() => {
   container = document.createElement("div");
   document.body.appendChild(container);
 });
+// boilerplate
 
 afterEach(() => {
   document.body.removeChild(container);
   container = null;
 });
+// boilerplate
 
 describe("Button component", () => {
   test("it shows the expected text when clicked", () => {
