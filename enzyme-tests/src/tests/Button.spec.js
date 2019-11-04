@@ -1,18 +1,30 @@
 import React from "react";
 import Button from "../components/button/button";
-import renderer from "react-test-renderer"; // rtr is a wlibrary for rendering React components to pure JavaScript objects
+import ReactDOM from "react-dom";
+import { act } from "react-dom/test-utils";
+
+let container;
+
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
 
 describe("Button component", () => {
-  test("Matches the snapshot", () => {
-    const button = renderer.create(<Button />).toJSON(); // create() is a method for mounting the component
-    expect(button).toMatchSnapshot(); // IF YOUR COMPONENT CHANGES A LOT, DON'T DO SNAPSHOT TESTING
-  });
-
-  test("it shows the expected text when clicked (testing the wrong way!)", () => {
-    const component = renderer.create(<Button text="SUBSCRIBE TO BASIC" />);
-    const instance = component.root; // returns the root test instance object that is useful for making assertions about specific nodes in the tree
-    const button = instance.findByType("button");
-    button.props.onClick();
-    expect(button.props.children).toBe("PROCEED TO CHECKOUT");
+  test("it shows the expected text when clicked", () => {
+    act(() => {
+      ReactDOM.render(<Button text="SUBSCRIBE TO BASIC" />, container);
+    });
+    const button = container.getElementsByTagName("button")[0];
+    expect(button.textContent).toBe("SUBSCRIBE TO BASIC");
+    act(() => {
+      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+    expect(button.textContent).toBe("PROCEED TO CHECKOUT");
   });
 });
